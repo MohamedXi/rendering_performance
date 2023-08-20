@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {Footer, Header, Item} from './components';
 
 function App() {
@@ -8,16 +8,16 @@ function App() {
     { id: 3, value: '' },
   ]);
 
-  const handleChange = (id: number, value: string) => {
-    const newItemsValues = itemsValues.map((item) => {
-      if (item.id === id) {
-        return { ...item, value };
-      }
-      return item;
+  const handleChange = useCallback((id: number, value: string) => {
+    setItemsValues((prevItemsValues) => {
+      return prevItemsValues.map((item) => {
+        if (item.id === id) {
+          return { ...item, value };
+        }
+        return item;
+      });
     });
-
-    setItemsValues(newItemsValues);
-  }
+  }, []);
 
   return (
     <div className="app">

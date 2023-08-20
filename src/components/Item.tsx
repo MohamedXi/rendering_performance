@@ -1,4 +1,4 @@
-import React from "react";
+import React, {memo} from "react";
 
 type ItemProps = {
   id: number;
@@ -6,7 +6,7 @@ type ItemProps = {
   handleChange: (id: number, value: string) => void;
 };
 
-export const Item: React.FC<ItemProps> = ({ id, value, handleChange }) => {
+export const Item: React.FC<ItemProps> = memo(({ id, value, handleChange }) => {
   return (
     <form className='item'>
       <h5 className='item-render'>Re-render {(Math.random() * 100).toFixed()}</h5>
@@ -22,4 +22,4 @@ export const Item: React.FC<ItemProps> = ({ id, value, handleChange }) => {
       />
     </form>
   );
-}
+});
